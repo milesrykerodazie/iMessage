@@ -1,0 +1,19 @@
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.login > div > img {
+  height: 150px;
+  object-fit: contain;
+}
+.login > button {
+  width: 300px;
+  background-color: #3ea4fb;
+  color: #eff2f5;
+  font-weight: 800;
+}
+.login > button:hover {
+  background-color: gainsboro;
+  color: #3ea4fb;
+}
