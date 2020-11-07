@@ -13,14 +13,16 @@ function Sidebar() {
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    db.collection("chats").onSnapshot((snapshot) =>
-      setChats(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        })),
-      ),
-    );
+    db.collection("chats")
+      .orderBy("chatName", "desc")
+      .onSnapshot((snapshot) =>
+        setChats(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          })),
+        ),
+      );
   });
 
   const addChat = () => {
