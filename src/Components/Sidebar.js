@@ -33,6 +33,10 @@ function Sidebar() {
       });
     }
   };
+
+  //db.collection("wine").documents("document id").delete()
+  // db.collection("wine").documents("document id").updateData(["type":FieldValue.delete()])
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">

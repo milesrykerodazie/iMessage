@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setChat } from "../features/chatSlice";
 import db from "../firebase";
 import * as timeago from "timeago.js";
+import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 
 function SidebarChat({ id, chatName }) {
   const dispatch = useDispatch();
@@ -19,6 +20,18 @@ function SidebarChat({ id, chatName }) {
         setChatInfo(snapshot.docs.map((doc) => doc.data())),
       );
   }, [id]);
+
+  const deleteChat = () => {
+    const confirm = prompt("Type in room name to delete");
+    if (confirm === chatName) {
+      db.collection("chats")
+        .doc(id)
+        .delete()
+        .then(alert("chat successfully deleted!"))
+        .catch(console.log("Error removing document"));
+    }
+  };
+
   return (
     <div
       onClick={() =>
@@ -40,6 +53,9 @@ function SidebarChat({ id, chatName }) {
             new Date(chatInfo[chatInfo.length - 1]?.timestamp?.toDate()),
           )}
         </small>
+        <div className="sidebarChatInfo__delete">
+          <DeleteOutlineOutlinedIcon onClick={deleteChat} />
+        </div>
       </div>
     </div>
   );
